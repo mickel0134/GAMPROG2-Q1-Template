@@ -12,12 +12,15 @@ public class RaycastController : MonoBehaviour
     //The layer that will determine what the raycast will hit
     LayerMask layerMask;
     //The UI text component that will display the name of the interactable hit
-    public TextMeshProUGUI interactionInfo;
+    [SerializeField]private TextMeshProUGUI interactionInfo;
 
+    
     // Update is called once per frame
     private void Update()
     {
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, raycastDistance, layerMask, QueryTriggerInteraction.Ignore))
+        
+
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, raycastDistance, layerMask))
         {
             Debug.Log($"{hit.collider.gameObject.name} is within reach");
             if (hit.collider.gameObject.GetComponent<Interactable>() != null)
@@ -29,9 +32,9 @@ public class RaycastController : MonoBehaviour
 
                 interactionInfo.text = hit.collider.gameObject.GetComponent<Interactable>().id;
             }
+            else interactionInfo.text = "";
         }
-        //else interactionInfo.SetText(string.Empty);
-
+        else interactionInfo.text = "";
         Debug.DrawRay(transform.position, transform.forward * raycastDistance, Color.red);
         
     }

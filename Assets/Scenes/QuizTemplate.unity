@@ -2248,7 +2248,7 @@ MonoBehaviour:
   raycastDistance: 3
   layerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   interactionInfo: {fileID: 399787024}
 --- !u!1 &887847251
 GameObject:
