@@ -15,6 +15,7 @@ public class CharacterControllerMovement : MonoBehaviour
 
     private CharacterController characterController;
     private RaycastController raycastController;
+    private InventoryManager inventoryManager;
 
     private void Awake()
     {

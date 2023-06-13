@@ -66,6 +66,7 @@ public class InventoryManager : MonoBehaviour
                 if (data.id == itemDatabase[i].id)
                 {
                     player.attributes[0].value += itemDatabase[0].attributes[0].value;
+                    if (player.attributes[0].value > 100) player.attributes[0].value = 100;
                 }
             }
             Debug.Log($"Used {data.id}");
