@@ -27,7 +27,6 @@ public class EquipmentSlot : MonoBehaviour
 
     public void Unequip()
     {
-        // TODO
         // Check if there is an available inventory slot before removing the item.
         // Make sure to return the equipment to the inventory when there is an available slot.
         // Reset the item data and icons here
@@ -38,6 +37,20 @@ public class EquipmentSlot : MonoBehaviour
             itemIcon.sprite = null;
             itemIcon.enabled = false;
             defaultIcon.enabled = true;
+
+            //Removes equipment attribute from player
+            for (int att = 0; att < inventoryManager.itemDatabase.Count; att++)
+            {
+                for (int i = 0; i < inventoryManager.itemDatabase.Count; i++)
+                {
+                    if (id == inventoryManager.itemDatabase[i].id && inventoryManager.player.attributes[att].type == 
+                        inventoryManager.itemDatabase[i].attributes[0].type)
+                    {
+                        inventoryManager.player.attributes[att].value -= inventoryManager.itemDatabase[i].attributes[0].value;
+                    }
+                }
+            }
+
             inventoryManager.AddItem(id);
         }
         else Debug.Log($"Cant unequip {id} due to lack of inventory space");
@@ -46,6 +59,6 @@ public class EquipmentSlot : MonoBehaviour
     }
     public bool HasItem()
     {
-        return itemIcon != null;
+        return itemIcon.sprite != null;
     }
 }

@@ -9,9 +9,19 @@ public class Item : Interactable
     public override void Interact()
     {
         // TODO: Add the item to the inventory. Make sure to destroy the prefab once the item is collected 
-        Debug.Log("Interact with object");
-        inventoryManager.AddItem(id);
-        Destroy(this.gameObject);
+        Debug.Log("Interacted with object");
+
+        int inventorySLot = inventoryManager.GetEmptyInventorySlot();
+        if (inventorySLot == -1)
+        {
+            Debug.Log($"Cant pickup {id} due to lack of inventory space");
+        }
+        else
+        {
+            inventoryManager.AddItem(id);
+            Destroy(this.gameObject);
+        }
+        
 
         
     }

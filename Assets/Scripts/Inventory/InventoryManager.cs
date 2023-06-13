@@ -60,21 +60,52 @@ public class InventoryManager : MonoBehaviour
         // Set the equipment slot's item as that of the used item
         if(data.type == ItemType.Consumable)
         {
+            //increaase Hp based on Hp_Potion value
+            for (int i = 0; i < itemDatabase.Count; i++)
+            {
+                if (data.id == itemDatabase[i].id)
+                {
+                    player.attributes[0].value += itemDatabase[0].attributes[0].value;
+                }
+            }
             Debug.Log($"Used {data.id}");
         }
-        else
+        else //equipables
         {
-            int slot = GetEquipmentSlot(data.slotType);
-            equipmentSlots[slot].SetItem(data);
+            //Check for equipment slot type
+            int slot = GetEquipmentSlot(data.slotType), inventorySlot = GetEmptyInventorySlot();//For swapping
+            if(equipmentSlots[slot].HasItem())
+            {
+                if(inventorySlot != -1)
+                {
+                    equipmentSlots[slot].Unequip();
+                    equipmentSlots[slot].SetItem(data);
+                }
+                else Debug.Log("No More Inventory Spaces");
+            }
+            else
+            {
+                equipmentSlots[slot].SetItem(data);
+            }
+            //Increase Player Attribute based Equipment Attribute
+            for (int att = 0; att < itemDatabase.Count; att++)
+            {
+                for (int i = 0; i < itemDatabase.Count; i++)
+                {
+                    if (data.id == itemDatabase[i].id && player.attributes[att].type == itemDatabase[i].attributes[0].type)
+                    {
+                        player.attributes[att].value += itemDatabase[i].attributes[0].value;
+                    }
+                }
+            }
+
             Debug.Log($"Equiped {data.id} into equipmentSlot index {slot}");
-            Debug.Log(equipmentSlots[slot].HasItem());
         }
     }
 
 
     public void AddItem(string itemID)
     {
-        //TODO
         //1. Cycle through every item in the database until you find the item with the same id.
         //2. Get the index of the InventorySlot that does not have any Item and set its Item to the Item found
 
@@ -89,14 +120,10 @@ public class InventoryManager : MonoBehaviour
                 inventorySlots[index].SetItem(itemDatabase[i]);
             }
         }
-        
-
     }
 
     public int GetEmptyInventorySlot()
     {
-
-        //TODO
         //Check which inventory slot doesn't have an Item and return its index
         for(int i = 0; i < itemDatabase.Count; i++)
         {
@@ -108,7 +135,6 @@ public class InventoryManager : MonoBehaviour
 
     public int GetEquipmentSlot(EquipmentSlotType type)
     {
-        //TODO
         //Check which equipment slot matches the slot type and return its index
         for (int i = 0; i < equipmentSlots.Count; i++)
         {

@@ -47,8 +47,10 @@ public enum AttributeType
 {
     HP,
     MP,
-    Defense,
-    Damage
+    Strength,
+    Agility,
+    Defense
+    
     // TODO
     // Add other attribute types here
 }
