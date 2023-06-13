@@ -7,11 +7,18 @@ public class InventorySlot : MonoBehaviour
 {
     private ItemData itemData;
     public Image itemIcon;
+    private Slot slot;
 
     public void SetItem(ItemData data)
     {
         // TODO
         // Set the item data the and icons here
+        
+        itemData = data;
+        itemIcon.sprite = data.icon;
+        itemIcon.enabled = true;
+        Debug.Log($"Setting itemIcon sprite: {data.icon}");
+        //slot.SetItem(itemData);
     }
 
     public void UseItem()

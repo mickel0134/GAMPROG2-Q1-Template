@@ -8,7 +8,7 @@ public class ThirdPersonMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5.0f;
     [SerializeField] private float rotationSmoothTime = 0.1f;
-    [SerializeField] private Camera camera;
+    [SerializeField] private Camera cam;
     [SerializeField]
     private float gravityScale = 1.0f;
     private float currentAngle;
@@ -19,9 +19,9 @@ public class ThirdPersonMovement : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();   
-        if(camera == null)
+        if(cam == null)
         {
-            camera = Camera.main;
+            cam = Camera.main;
         }
     }
 
@@ -37,7 +37,7 @@ public class ThirdPersonMovement : MonoBehaviour
         if(movement.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(movement.x, movement.z) 
-                * Mathf.Rad2Deg + camera.transform.eulerAngles.y;
+                * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
             currentAngle = Mathf.SmoothDampAngle(currentAngle,
                 targetAngle,
                 ref currentAngleVelocity,

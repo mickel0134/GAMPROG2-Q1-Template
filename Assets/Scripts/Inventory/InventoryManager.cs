@@ -59,18 +59,39 @@ public class InventoryManager : MonoBehaviour
         // Set the equipment slot's item as that of the used item
     }
 
-   
+
     public void AddItem(string itemID)
     {
         //TODO
         //1. Cycle through every item in the database until you find the item with the same id.
         //2. Get the index of the InventorySlot that does not have any Item and set its Item to the Item found
+
+        int index = GetEmptyInventorySlot();
+        Debug.Log($"Empty inventory slot index: {index}");
+
+        for (int i = 0; i < itemDatabase.Count; i++)
+        {
+            Debug.Log($"itemDatabase: {itemDatabase[i]}");
+            if (itemDatabase[i].id == itemID)
+            {
+                Debug.Log($"Setting inventorySlot index: {index} with itemDatabase: {itemDatabase[i]}");
+                inventorySlots[index].SetItem(itemDatabase[i]);
+            }
+        }
+        
+
     }
 
     public int GetEmptyInventorySlot()
     {
+
         //TODO
         //Check which inventory slot doesn't have an Item and return its index
+        for(int i = 0; i < itemDatabase.Count; i++)
+        {
+            if (!inventorySlots[i].HasItem())
+                return i;
+        }
         return -1;
     }
 

@@ -279,6 +279,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor
       objectReference: {fileID: 0}
+    - target: {fileID: 1078868141710040, guid: db58b1eda8133c84983d20108c13888e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4327144084732578, guid: db58b1eda8133c84983d20108c13888e, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -325,6 +329,55 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db58b1eda8133c84983d20108c13888e, type: 3}
+--- !u!1 &248485271
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 248485272}
+  - component: {fileID: 248485273}
+  m_Layer: 0
+  m_Name: GroundRayCast
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &248485272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248485271}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1362624898}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &248485273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248485271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f88bfc89e340b49b89ebcf4ad3a5d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raycastDistance: 1.5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  interactionInfo: {fileID: 0}
 --- !u!1001 &281622695
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1316,6 +1369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: Sword
+  inventoryManager: {fileID: 0}
 --- !u!1 &534315081
 GameObject:
   m_ObjectHideFlags: 0
@@ -1614,6 +1668,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SideWall
       objectReference: {fileID: 0}
+    - target: {fileID: 1078868141710040, guid: db58b1eda8133c84983d20108c13888e, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4327144084732578, guid: db58b1eda8133c84983d20108c13888e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1799,6 +1857,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.21674046, y: 0.21674031, z: 0.8306626}
   m_Center: {x: -0.000000059604645, y: 0.0000000074505815, z: 0.051116608}
+--- !u!114 &801370575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801370569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9180bf81e994684d967719ffb5ee47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Mana Potion
+  inventoryManager: {fileID: 0}
 --- !u!1 &844293581
 GameObject:
   m_ObjectHideFlags: 0
@@ -1811,7 +1883,7 @@ GameObject:
   - component: {fileID: 844293585}
   - component: {fileID: 844293584}
   - component: {fileID: 844293583}
-  - component: {fileID: 844293582}
+  - component: {fileID: 844293587}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1819,23 +1891,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &844293582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 844293581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68f88bfc89e340b49b89ebcf4ad3a5d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  raycastDistance: 5
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  interactionInfo: {fileID: 399787024}
 --- !u!114 &844293583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1916,6 +1971,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &844293587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844293581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f88bfc89e340b49b89ebcf4ad3a5d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raycastDistance: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  interactionInfo: {fileID: 399787024}
 --- !u!1 &887847251
 GameObject:
   m_ObjectHideFlags: 0
@@ -2135,7 +2207,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b132453d66e77854295cd4ed66dce69d, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2217,6 +2289,13 @@ MonoBehaviour:
     slotType: 0
     attributes:
     - type: 0
+      value: 20
+  - id: Shield
+    icon: {fileID: 21300000, guid: b97c91e8b348f3f4ebdc11f5c82182cd, type: 3}
+    type: 1
+    slotType: 5
+    attributes:
+    - type: 2
       value: 20
   inventorySlots:
   - {fileID: 2580618980867222340}
@@ -3707,6 +3786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  jumpForce: 150
   gravityScale: 10
 --- !u!143 &1362624894
 CharacterController:
@@ -3801,7 +3881,8 @@ Transform:
   m_LocalPosition: {x: 4.48, y: 0.999, z: -0.769}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 248485272}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4543,6 +4624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: Shield
+  inventoryManager: {fileID: 915846249}
 --- !u!1 &1642404041 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 173500, guid: fb5a9652227c545d98a413cd73b80b69, type: 3}
@@ -4574,6 +4656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: HP Potion
+  inventoryManager: {fileID: 0}
 --- !u!1001 &1669155351
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4857,6 +4940,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.8243998, y: 0.23502229, z: 6.581685}
   m_Center: {x: 0.01827201, y: -0.0000009536743, z: -9.861026e-11}
+--- !u!114 &1740722331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740722325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9180bf81e994684d967719ffb5ee47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Bow
+  inventoryManager: {fileID: 0}
 --- !u!1 &1771177952
 GameObject:
   m_ObjectHideFlags: 0
@@ -5480,6 +5577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
