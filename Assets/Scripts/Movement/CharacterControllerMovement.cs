@@ -7,15 +7,19 @@ public class CharacterControllerMovement : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 2.0f;
     [SerializeField]
+    private float jumpForce = 100f;
+    [SerializeField]
     private float gravityScale = 1.0f;
 
     private float gravity = -9.8f;
 
     private CharacterController characterController;
+    private RaycastController raycastController;
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        raycastController = GetComponentInChildren<RaycastController>();
     }
 
     private void Update()
@@ -31,7 +35,13 @@ public class CharacterControllerMovement : MonoBehaviour
         Vector3 moveDirection = (transform.right * xMove) + (transform.forward * zMove);
         moveDirection.y += gravity * Time.deltaTime * gravityScale;
         moveDirection *= moveSpeed * Time.deltaTime;
-       
+
+
+        if (Input.GetButtonDown("Jump") && raycastController.IsGrounded())
+        {
+            moveDirection.y += jumpForce * Time.deltaTime;
+            Debug.Log("was grounded and now jumping");
+        }
         //Debug.Log(moveDirection);
         characterController.Move(moveDirection);
     }

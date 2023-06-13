@@ -17,11 +17,19 @@ public class RaycastController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        Debug.DrawRay(transform.position, -Vector3.up, Color.green);
         //TODO: Raycast
         //1. Perform a raycast originating from the gameobject's position towards its forward direction.
         //   Make sure that the raycast will only hit the layer specified in the layermask
         //2. Check if the object hits any Interactable. If it does, show the interactionInfo and set its text
         //   to the id of the Interactable hit. If it doesn't hit any Interactable, simply disable the text
         //3. Make sure to interact with the Interactable only when the mouse button is pressed.
+    }
+
+    public bool IsGrounded()
+    {
+        
+        Debug.Log(Physics.Raycast(transform.position, -Vector3.up, raycastDistance, layerMask));
+        return Physics.Raycast(transform.position, -Vector3.up, raycastDistance, layerMask);
     }
 }
