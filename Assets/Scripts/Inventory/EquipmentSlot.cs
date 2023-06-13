@@ -39,9 +39,9 @@ public class EquipmentSlot : MonoBehaviour
             defaultIcon.enabled = true;
 
             //Removes equipment attribute from player
-            for (int att = 0; att < inventoryManager.itemDatabase.Count; att++)
+            for (int att = 0; att < inventoryManager.itemDatabase.Count - 1; att++)
             {
-                for (int i = 0; i < inventoryManager.itemDatabase.Count; i++)
+                for (int i = 0; i < inventoryManager.itemDatabase.Count - 1; i++)
                 {
                     if (id == inventoryManager.itemDatabase[i].id && inventoryManager.player.attributes[att].type == 
                         inventoryManager.itemDatabase[i].attributes[0].type)

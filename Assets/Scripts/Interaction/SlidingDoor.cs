@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class SlidingDoor : Interactable
 {
+    public InventoryManager inventoryManager;
+
     public override void Interact()
     {
-        float start = 0f;
-        start += Time.deltaTime;
-        transform.position = new Vector3(transform.position.x, transform.position.y + start, transform.position.z);
+        if (inventoryManager.WithKey())
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y + Time.deltaTime, transform.position.z);
+            id = "Sliding Door";
+        }
+        else id = "Locked Door";
     }
 }

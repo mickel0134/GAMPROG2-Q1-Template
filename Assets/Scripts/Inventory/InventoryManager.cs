@@ -60,18 +60,22 @@ public class InventoryManager : MonoBehaviour
         // Set the equipment slot's item as that of the used item
         if(data.type == ItemType.Consumable)
         {
-            //increaase Hp based on Hp_Potion value
-            for (int i = 0; i < itemDatabase.Count; i++)
+            //increaase Hp/Mp based on Hp_Potion/Mp_Potion value
+            for (int att = 0; att < itemDatabase.Count - 1; att++)
             {
-                if (data.id == itemDatabase[i].id)
+                for (int i = 0; i < itemDatabase.Count - 1; i++)
                 {
-                    player.attributes[0].value += itemDatabase[0].attributes[0].value;
-                    if (player.attributes[0].value > 100) player.attributes[0].value = 100;
+                    if (data.id == itemDatabase[i].id && player.attributes[att].type == itemDatabase[i].attributes[0].type)
+                    {
+                        player.attributes[att].value += itemDatabase[i].attributes[0].value;
+                        if (player.attributes[att].value > 100) player.attributes[att].value = 100;
+                    }
                 }
             }
+            
             Debug.Log($"Used {data.id}");
         }
-        else //equipables
+        else if(data.type == ItemType.Equipabble)//equipables
         {
             //Check for equipment slot type
             int slot = GetEquipmentSlot(data.slotType), inventorySlot = GetEmptyInventorySlot();//For swapping
@@ -89,9 +93,9 @@ public class InventoryManager : MonoBehaviour
                 equipmentSlots[slot].SetItem(data);
             }
             //Increase Player Attribute based Equipment Attribute
-            for (int att = 0; att < itemDatabase.Count; att++)
+            for (int att = 0; att < itemDatabase.Count - 1; att++)
             {
-                for (int i = 0; i < itemDatabase.Count; i++)
+                for (int i = 0; i < itemDatabase.Count - 1; i++)
                 {
                     if (data.id == itemDatabase[i].id && player.attributes[att].type == itemDatabase[i].attributes[0].type)
                     {
@@ -102,6 +106,8 @@ public class InventoryManager : MonoBehaviour
 
             Debug.Log($"Equiped {data.id} into equipmentSlot index {slot}");
         }
+        //key
+        else { }
     }
 
 
@@ -126,7 +132,7 @@ public class InventoryManager : MonoBehaviour
     public int GetEmptyInventorySlot()
     {
         //Check which inventory slot doesn't have an Item and return its index
-        for(int i = 0; i < itemDatabase.Count; i++)
+        for(int i = 0; i < itemDatabase.Count - 1; i++)
         {
             if (!inventorySlots[i].HasItem())
                 return i;
@@ -143,5 +149,17 @@ public class InventoryManager : MonoBehaviour
                 return i;
         }
         return -1;
+    }
+
+    public bool WithKey()
+    {
+        int index = GetEmptyInventorySlot();
+        if (index < 0) index = itemDatabase.Count - 1;
+        for (int i = 0; i < index; i++)
+        {
+            if(inventorySlots[i].checkKey() == true)
+            return true;
+        }
+        return false;
     }
 }

@@ -17,7 +17,7 @@ public class RaycastController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, raycastDistance, layerMask))
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, raycastDistance, layerMask, QueryTriggerInteraction.Ignore))
         {
             Debug.Log($"{hit.collider.gameObject.name} is within reach");
             if (hit.collider.gameObject.GetComponent<Interactable>() != null)
@@ -30,7 +30,7 @@ public class RaycastController : MonoBehaviour
                 interactionInfo.text = hit.collider.gameObject.GetComponent<Interactable>().id;
             }
         }
-        //else interactionInfo.text = "";
+        //else interactionInfo.SetText(string.Empty);
 
         Debug.DrawRay(transform.position, transform.forward * raycastDistance, Color.red);
         

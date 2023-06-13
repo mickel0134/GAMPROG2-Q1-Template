@@ -15,7 +15,8 @@ public class ItemData
 public enum ItemType
 {
     Consumable,
-    Equipabble, 
+    Equipabble,
+    Key
 }
 
 public enum EquipmentSlotType

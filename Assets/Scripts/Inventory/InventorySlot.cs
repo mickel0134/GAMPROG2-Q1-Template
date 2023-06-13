@@ -22,16 +22,43 @@ public class InventorySlot : MonoBehaviour
 
     public void UseItem()
     {
-        InventoryManager.Instance.UseItem(itemData);
-        itemData = null;
-        itemIcon.sprite = null;
-        itemIcon.enabled = false;
-        // TODO
-        // Reset the item data and the icons here
+        int slotChecker = InventoryManager.Instance.GetEmptyInventorySlot(),
+            equipmentSlot = InventoryManager.Instance.GetEquipmentSlot(itemData.slotType);
+
+        
+        if(itemData.type == ItemType.Key)
+        {
+            Debug.Log("Cannot be consumed or equip");
+        }
+        else if(itemData.type == ItemType.Consumable)
+        {
+            InventoryManager.Instance.UseItem(itemData);
+            itemData = null;
+            itemIcon.sprite = null;
+            itemIcon.enabled = false;
+        }
+        else
+        {
+            if(slotChecker == -1 && InventoryManager.Instance.equipmentSlots[equipmentSlot].HasItem())
+                Debug.Log("Cannot be consumed or equip");
+            else
+            {
+                InventoryManager.Instance.UseItem(itemData);
+                itemData = null;
+                itemIcon.sprite = null;
+                itemIcon.enabled = false;
+            }
+        }
     }
 
     public bool HasItem()
     {
         return itemData != null;
+    }
+
+    public bool checkKey()
+    {
+        if (itemData.type == ItemType.Key) return true;
+        return false;
     }
 }
