@@ -93,6 +93,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultIcon: {fileID: 3158230944375549181}
   itemIcon: {fileID: 3190605361882412537}
+  type: 1
+  inventoryManager: {fileID: 0}
 --- !u!1 &6867755127861471452
 GameObject:
   m_ObjectHideFlags: 0

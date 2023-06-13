@@ -7,7 +7,6 @@ public class InventorySlot : MonoBehaviour
 {
     private ItemData itemData;
     public Image itemIcon;
-    private Slot slot;
 
     public void SetItem(ItemData data)
     {
@@ -24,6 +23,9 @@ public class InventorySlot : MonoBehaviour
     public void UseItem()
     {
         InventoryManager.Instance.UseItem(itemData);
+        itemData = null;
+        itemIcon.sprite = null;
+        itemIcon.enabled = false;
         // TODO
         // Reset the item data and the icons here
     }

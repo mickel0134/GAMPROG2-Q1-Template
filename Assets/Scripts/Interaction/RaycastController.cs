@@ -39,7 +39,7 @@ public class RaycastController : MonoBehaviour
         }
         //else interactionInfo.text = "";
 
-        Debug.DrawRay(transform.position, transform.forward * raycastDistance, Color.green);
+        Debug.DrawRay(transform.position, transform.forward * raycastDistance, Color.red);
         
     }
 

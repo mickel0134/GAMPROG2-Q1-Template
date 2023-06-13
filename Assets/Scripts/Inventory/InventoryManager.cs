@@ -51,12 +51,24 @@ public class InventoryManager : MonoBehaviour
 
     #endregion
 
+    
     public void UseItem(ItemData data)
     {
         // TODO
         // If the item is a consumable, simply add the attributes of the item to the player.
         // If it is equippable, get the equipment slot that matches the item's slot.
         // Set the equipment slot's item as that of the used item
+        if(data.type == ItemType.Consumable)
+        {
+            Debug.Log($"Used {data.id}");
+        }
+        else
+        {
+            int slot = GetEquipmentSlot(data.slotType);
+            equipmentSlots[slot].SetItem(data);
+            Debug.Log($"Equiped {data.id} into equipmentSlot index {slot}");
+            Debug.Log(equipmentSlots[slot].HasItem());
+        }
     }
 
 
@@ -71,7 +83,6 @@ public class InventoryManager : MonoBehaviour
 
         for (int i = 0; i < itemDatabase.Count; i++)
         {
-            Debug.Log($"itemDatabase: {itemDatabase[i]}");
             if (itemDatabase[i].id == itemID)
             {
                 Debug.Log($"Setting inventorySlot index: {index} with itemDatabase: {itemDatabase[i]}");
@@ -99,6 +110,11 @@ public class InventoryManager : MonoBehaviour
     {
         //TODO
         //Check which equipment slot matches the slot type and return its index
+        for (int i = 0; i < equipmentSlots.Count; i++)
+        {
+            if (equipmentSlots[i].type == type)
+                return i;
+        }
         return -1;
     }
 }
